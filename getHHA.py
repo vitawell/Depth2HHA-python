@@ -10,11 +10,12 @@ from utils.getCameraParam import *
 '''
 must use 'COLOR_BGR2GRAY' here, or you will get a different gray-value with what MATLAB gets.
 '''
-def getImage(root='demo'):
-    D = cv2.imread(os.path.join(root, '0.png'), cv2.COLOR_BGR2GRAY)/10000
-    RD = cv2.imread(os.path.join(root, '0_raw.png'), cv2.COLOR_BGR2GRAY)/10000
+def getImage(file_name):
+    D = cv2.imread( file_name , cv2.COLOR_BGR2GRAY)/10000
+    # 海参灰度图最大值为47751，需要除以10000
+    RD = D
+    # RD = cv2.imread(os.path.join(root, '0_raw.png'), cv2.COLOR_BGR2GRAY)/10000
     return D, RD
-
 
 '''
 C: Camera matrix
@@ -60,29 +61,26 @@ def getHHA(C, D, RD):
     return HHA
 
 if __name__ == "__main__":
-    D, RD = getImage()
-    camera_matrix = getCameraParam('color')
-    print('max gray value: ', np.max(D))        # make sure that the image is in 'meter'
-    hha = getHHA(camera_matrix, D, RD)
-    hha_complete = getHHA(camera_matrix, D, D)
-    cv2.imwrite('demo/hha.png', hha)
-    cv2.imwrite('demo/hha_complete.png', hha_complete)
-    
-    
-    ''' multi-peocessing example '''
-    '''
-    from multiprocessing import Pool
-    
-    def generate_hha(i):
-        # generate hha for the i-th image
-        return
-    
-    processNum = 16
-    pool = Pool(processNum)
+    path = '/Users/Vita/Desktop/SfM/8.8 depth/'
+    path2 = '/Users/Vita/PycharmProjects/Depth2HHA-python-master/img/'
 
-    for i in range(img_num):
-        print(i)
-        pool.apply_async(generate_hha, args=(i,))
-        pool.close()
-        pool.join()
-    ''' 
+    file_dir = os.listdir(path)
+    for file in file_dir:
+        if not os.path.isdir(file):  #需要是绝对路径
+            file_name = path + file
+            print(file_name)
+
+        (filenum, extension) = os.path.splitext(file)  #去掉文件后缀
+        # print(extension) #.tiff
+
+        if extension == '.tiff':
+            (filenum, extension) = os.path.splitext(filenum)  #去掉文件后缀
+
+            D, RD = getImage(file_name)
+            camera_matrix = getCameraParam('color')
+            print('max gray value: ', np.max(D))        # make sure that the image is in 'meter'
+            hha = getHHA(camera_matrix, D, RD)
+            #hha_complete = getHHA(camera_matrix, D, D)
+            cv2.imwrite(path2 + filenum + '.png', hha)
+            #cv2.imwrite('demo/hha_complete.png', hha_complete)
+
