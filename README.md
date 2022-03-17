@@ -1,8 +1,5 @@
 # Depth2HHA-python
-## News
-- **[July 20 2021] We have optimized the code and the running speed is much faster. Thank [hongfz16](https://github.com/hongfz16) for his useful suggestions.**
-
-
+BMP使用的hha
 
 ### Introduction
 
