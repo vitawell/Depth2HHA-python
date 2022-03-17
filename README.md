@@ -1,6 +1,7 @@
 # Depth2HHA-python
 BMP使用的从深度图生成hha的方法
-修改了getHHA.py文件
+
+修改了getHHA.py文件，可以读取文件夹下的所有图片并转换
 
 ### Introduction
 
