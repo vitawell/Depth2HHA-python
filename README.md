@@ -1,5 +1,6 @@
 # Depth2HHA-python
-BMP使用的hha
+BMP使用的从深度图生成hha的方法
+修改了getHHA.py文件
 
 ### Introduction
 
