@@ -12,7 +12,7 @@ must use 'COLOR_BGR2GRAY' here, or you will get a different gray-value with what
 '''
 def getImage(file_name):
     D = cv2.imread( file_name , cv2.COLOR_BGR2GRAY)/10000
-    # 海参灰度图最大值为47751，需要除以10000
+    # 海参灰度图最大值为47751，需要除以10000。最后单位需要是m，可能得除以100000.
     RD = D
     # RD = cv2.imread(os.path.join(root, '0_raw.png'), cv2.COLOR_BGR2GRAY)/10000
     return D, RD
