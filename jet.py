@@ -19,8 +19,8 @@ def convertPNG(pngfile,outdir):
     #im.save(os.path.join(outdir,os.path.basename(pngfile)))
  
 if __name__ == "__main__":
-    path = '/Users/Vita/Desktop/SfM/8.8 depth/'
-    path2 = '/Users/Vita/PycharmProjects/Depth2HHA-python-master/img/'
+    path = '/data1/GLPDepth/tdepth/'
+    path2 = '/data1/GLPDepth/img/'
 
     file_dir = os.listdir(path)
     for file in file_dir:
