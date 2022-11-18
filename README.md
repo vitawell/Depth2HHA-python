@@ -3,6 +3,8 @@ BMP使用的从深度图生成hha的方法
 
 修改了getHHA.py文件，可以读取文件夹下的所有图片并转换
 
+添加jet.py文件，将深度图改为伪彩色图
+
 ### Introduction
 
 This repo implements **HHA-encoding** algorithm in *python3*. **HHA image** is an encoding algorithm to make better use of depth images, which was proposed by  **<a href='https://github.com/s-gupta'>s-gupta</a>** in this paper:  <a href='https://arxiv.org/pdf/1407.5736.pdf'>Learning Rich Features from RGB-D Images for Object Detection and Segmentation</a>. This algorithm was implemented in MATLAB initially, and I organized a MATLAB version of the code: <a href='https://github.com/charlesCXK/Depth2HHA'>Depth2HHA-MATLAB</a>. In this repo, I use python3 to get exactly the same result as what MATLAB code does.
