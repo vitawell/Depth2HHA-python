@@ -9,7 +9,9 @@ def convertPNG(pngfile,outdir):
     im_depth = cv2.imread(pngfile)
     
     #apply colormap on depth image(image must be converted to 8-bit per pixel first)
-    im_color=cv2.applyColorMap(cv2.convertScaleAbs(im_depth,alpha=15),cv2.COLORMAP_JET)
+    #im_color=cv2.applyColorMap(cv2.convertScaleAbs(im_depth,alpha=15),cv2.COLORMAP_JET)
+    #默认alpha设为1，比设为15效果好
+    im_color=cv2.applyColorMap(cv2.convertScaleAbs(im_depth,alpha=1),cv2.COLORMAP_JET)
     
     return im_color
   
