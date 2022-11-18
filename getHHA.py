@@ -11,8 +11,9 @@ from utils.getCameraParam import *
 must use 'COLOR_BGR2GRAY' here, or you will get a different gray-value with what MATLAB gets.
 '''
 def getImage(file_name):
-    D = cv2.imread( file_name , cv2.COLOR_BGR2GRAY)/10000
+    D = cv2.imread( file_name , cv2.COLOR_BGR2GRAY)/50000
     # 海参灰度图最大值为47751，需要除以10000。最后单位需要是m，可能得除以100000。后面转rgb会乘100。
+    # 改为除以50000，后面乘255，视觉效果更好。
     RD = D
     # RD = cv2.imread(os.path.join(root, '0_raw.png'), cv2.COLOR_BGR2GRAY)/10000
     return D, RD
@@ -24,8 +25,9 @@ RD: Raw depth image, the unit of each element in it is "meter"
 '''
 def getHHA(C, D, RD):
     missingMask = (RD == 0);
-    pc, N, yDir, h, pcRot, NRot = processDepthImage(D * 100, missingMask, C);
-
+    # pc, N, yDir, h, pcRot, NRot = processDepthImage(D * 100, missingMask, C);
+    pc, N, yDir, h, pcRot, NRot = processDepthImage(D * 255, missingMask, C);
+    
     tmp = np.multiply(N, yDir)
     acosValue = np.minimum(1,np.maximum(-1,np.sum(tmp, axis=2)))
     angle = np.array([math.degrees(math.acos(x)) for x in acosValue.flatten()])
