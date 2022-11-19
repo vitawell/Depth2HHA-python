@@ -13,6 +13,8 @@ must use 'COLOR_BGR2GRAY' here, or you will get a different gray-value with what
 def getImage(file_name):
     
     D = cv2.imread( file_name , cv2.COLOR_BGR2GRAY)
+    ##全局直方图均衡化？
+    D=cv2.equalizeHist(D)
     ##改为除以最大值？
     M = np.max(D)
     D = D/M
