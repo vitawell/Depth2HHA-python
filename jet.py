@@ -6,9 +6,11 @@ import numpy as np
  
 def convertPNG(pngfile,outdir):
     # READ THE DEPTH
-    im_depth = cv2.imread(pngfile)
+    # im_depth = cv2.imread(pngfile)
    
     ##
+    # 以灰度模式读取图片
+    im_depth = cv2.imread(pngfile,0)
     # 全局直方图均衡化
     img1=cv2.equalizeHist(im_depth)
     # 自适应直方图均衡化
