@@ -7,11 +7,18 @@ import numpy as np
 def convertPNG(pngfile,outdir):
     # READ THE DEPTH
     im_depth = cv2.imread(pngfile)
+   
+    ##
+    # 全局直方图均衡化
+    img1=cv2.equalizeHist(im_depth)
+    # 自适应直方图均衡化
+    #clahe=cv.createCLAHE(clipLimit=2.0,tileGridSize=(8,8))
+    #img2=clahe.apply(im_depth)
     
     #apply colormap on depth image(image must be converted to 8-bit per pixel first)
     #im_color=cv2.applyColorMap(cv2.convertScaleAbs(im_depth,alpha=15),cv2.COLORMAP_JET)
     #默认alpha设为1，比设为15效果好
-    im_color=cv2.applyColorMap(cv2.convertScaleAbs(im_depth,alpha=1),cv2.COLORMAP_JET)
+    im_color=cv2.applyColorMap(cv2.convertScaleAbs(img1,alpha=1),cv2.COLORMAP_JET)
     
     return im_color
   
