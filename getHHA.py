@@ -13,14 +13,16 @@ must use 'COLOR_BGR2GRAY' here, or you will get a different gray-value with what
 def getImage(file_name):
     
     # D = cv2.imread( file_name , cv2.COLOR_BGR2GRAY)
-    ##全局直方图均衡化
+    
     D = cv2.imread( file_name ,0)
-    D = cv2.equalizeHist(D)
-    ##改为除以最大值？
+    ##全局直方图均衡化hha2
+    #D = cv2.equalizeHist(D)
+    
+    ##改为除以最大值
     M = np.max(D)
     D = D/M
-    # 海参灰度图最大值为47751，需要除以10000。最后单位需要是m，可能得除以100000。后面转rgb会乘100。
-    # 改为除以50000，后面乘255，视觉效果更好。
+    ## 海参灰度图最大值为47751，需要除以10000。最后单位需要是m，可能得除以100000。后面转rgb会乘100。
+    ## 改为除以50000，后面乘255，视觉效果更好。
     RD = D
     # RD = cv2.imread(os.path.join(root, '0_raw.png'), cv2.COLOR_BGR2GRAY)/10000
     return D, RD
@@ -82,7 +84,7 @@ if __name__ == "__main__":
         (filenum, extension) = os.path.splitext(file)  #去掉文件后缀
         # print(extension) #.tiff
 
-        if extension == '.tiff':
+        if extension == '.tiff':   #若后缀为png则修改为png
             (filenum, extension) = os.path.splitext(filenum)  #去掉文件后缀
 
             D, RD = getImage(file_name)
