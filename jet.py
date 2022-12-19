@@ -11,7 +11,7 @@ def convertPNG(pngfile,outdir):
     ##
     # 以灰度模式读取图片
     im_depth = cv2.imread(pngfile,0)
-    # 全局直方图均衡化
+    # 全局直方图均衡化jet2
     img1=cv2.equalizeHist(im_depth)
     # 自适应直方图均衡化
     #clahe=cv.createCLAHE(clipLimit=2.0,tileGridSize=(8,8))
